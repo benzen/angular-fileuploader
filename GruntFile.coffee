@@ -100,7 +100,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-http-server'
 
   grunt.registerTask 'test-unit', ['karma:unit']
-  grunt.registerTask 'test-system', ['http-server','karma:e2e']
+  # grunt.registerTask 'test-system', ['http-server','karma:e2e']
 
-  grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit', 'test-system' ]
+  # grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit', 'test-system' ]
+  grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit' ]
 
