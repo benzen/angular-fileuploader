@@ -19,7 +19,7 @@ module.exports = function(config) {
         'bower_components/angular/angular.js',
         'bower_components/angular-mocks/angular-mocks.js',
         'lib/jasmine-jquery/jasmine-jquery.js',
-        'js/*.js',
+        'dist/angular-fileuploader.js',
         'test/unit/**/*.spec.coffee'
     ],
 

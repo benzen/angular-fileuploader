@@ -12,15 +12,15 @@ module.exports = (grunt) ->
     coffee:
       compile:
         files:
-          'js/angular-fileuploader.js': ['src/**/*.coffee']
+          'dist/angular-fileuploader.js': ['src/**/*.coffee']
         options:
           bare: true
           sourceMap: false
 
-    concat:
-      js:
-        src: [ 'src/angular-fileuploader.js' ]
-        dest: 'dist/angular-fileuploader.js'
+    # concat:
+    #   js:
+    #     src: [ 'src/angular-fileuploader.js' ]
+    #     dest: 'dist/angular-fileuploader.js'
 
     uglify:
       options:
@@ -65,7 +65,8 @@ module.exports = (grunt) ->
         files: [ flatten:true, expand:true, src: [
           'lib/bootstrap/bootstrap.js',
           'lib/angular/angular.js',
-          'lib/jquery/jquery.js'
+          'lib/jquery/jquery.js',
+          'dist/angular-fileuploader.js'
         ], dest: 'example/js' ]
       css:
         files: [ flatten:true, expand:true, src: [
@@ -101,5 +102,5 @@ module.exports = (grunt) ->
   grunt.registerTask 'test-unit', ['karma:unit']
   grunt.registerTask 'test-system', ['http-server','karma:e2e']
 
-  grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'concat', 'uglify', 'copy:*','test-unit', 'test-system' ]
+  grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit', 'test-system' ]
 
