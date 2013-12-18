@@ -1,6 +1,6 @@
 {
   "name": "angular-fileuploader",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "A simple fileuploader for angular",
   "main": "angular-bootstrap3-datepicker.js",
   "author": "Benjamin Dreux",

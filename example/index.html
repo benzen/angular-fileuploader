@@ -9,7 +9,7 @@
       var app = angular.module('demo', ['ng-fileuploader']);
       app.controller('indexCtrl', function ($scope, $timeout) {
 
-        $scope.$watch('myFile',function(newValue){
+        $scope.$watch('myOwnFile',function(newValue){
           console.log( "file changed", newValue);
         });
 
@@ -26,7 +26,7 @@
 
     <div class="form-group">
       <label>File</label>
-      <fileuploader data-ng-model="myFile" message="Choose a file" button-class="fa fa-lg fa-paperclip">
+      <fileuploader data-ng-model="myOwnFile" message="Choose a file" button-class="fa fa-lg fa-paperclip">
 
    </div>
 

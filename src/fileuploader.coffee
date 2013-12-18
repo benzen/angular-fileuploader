@@ -13,8 +13,8 @@ fileuploader = ($parse, $compile)->
     <div class="input-group" ng-cloak>
       <input type="file" style="display:none">
       <div class="form-control">
-        <div data-ng-show="myFile">{{myFile.name}}</div>
-        <div data-ng-hide="myFile"></div>
+        <div data-ng-show></div>
+        <div data-ng-hide></div>
       </div>
       <div class="input-group-addon">
         <div ></div>
@@ -33,10 +33,14 @@ fileuploader = ($parse, $compile)->
         message = e.value
       if e.name is 'button-class'
         buttonClass = e.value
+
     )
 
     element.find("div[data-ng-hide]").text message
     element.find("div.input-group-addon > div").addClass buttonClass
+
+    element.find('div[data-ng-show]').attr('data-ng-show', attr.ngModel)
+    element.find('div[data-ng-hide]').attr('data-ng-hide', attr.ngModel)
 
     element.find("div.input-group-addon").on "click", (e)->
       element.find("input").click()
@@ -48,7 +52,10 @@ fileuploader = ($parse, $compile)->
       $scope.$apply ->
         model = attr.ngModel
         file = e.currentTarget.files[0]
-
         $parse(model).assign $scope, file
+
+        element.find('div[data-ng-show]').text  if file then file.name else ""
+        $compile(element)($scope)
+
 
 fu.directive 'fileuploader', fileuploader
