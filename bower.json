@@ -1,6 +1,6 @@
 {
   "name": "angular-fileuploader",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Angular fileuploader",
   "main": [ "dist/angular-fileuploader.js" ],
   "authors": [ "Benjamin Dreux" ],
