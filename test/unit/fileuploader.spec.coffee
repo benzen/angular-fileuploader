@@ -7,12 +7,24 @@ describe "fileuploader",()->
     @scope = _$rootScope_
     @compile = _$compile_
     @elm = angular.element """
-      <div class="form-group" fileuploader>
-        <div value="un autre balise">
-      </div>
+      <fileuploader ng-model="myFile" message="Choose a file"/>
     """
     @compile(@elm) @scope
     @scope.$digest()
+
+    @createFakeFile = ->
+      file = null
+      # see https://code.google.com/p/phantomjs/issues/detail?id=1013
+      if WebKitBlobBuilder?
+        bb = new WebKitBlobBuilder()
+        bb.append("a simple string that fake the file")
+        file = bb.getBlob()
+      else
+        file = new Blob(["a simple string that fake the file"])
+      file.name = "My file name"
+      file
+
+
 
 
   it 'contains a file element', ->
@@ -23,24 +35,26 @@ describe "fileuploader",()->
 
   it 'should fire a click on the input when the div is clicked ', ->
     spy = spyOnEvent @elm.find("input")[0], "click"
-    @elm.find("div").click()
+    @elm.find("div:first").click()
     expect(spy).toHaveBeenTriggered()
 
-  it 'should fire an event on the scope when a new file is selected', ->
+  it 'when changing the file, the model is updated', ->
 
-    file = null
-    @scope.$on "fileChange", (e, file)->
-
-      # see https://code.google.com/p/phantomjs/issues/detail?id=1013
-      if WebKitBlobBuilder?
-        bb = new WebKitBlobBuilder()
-        bb.append("a simple string that fake the file")
-        file = bb.getBlob()
-      else
-       file = new Blob(["a simple string that fake the file"])
-
-      expect(file).toEqual( file )
+    file = @createFakeFile()
 
     @elm.find("input")[0].files[0] = file
+    @elm.find("input:first").triggerHandler 'change'
+
+    expect(@scope.myFile).toEqual file
+
+  it 'should display the message given in attribute when no file is seleted',->
+    expect(@elm.find("div[data-ng-hide]").val(),"Choose a file")
+
+  it 'should show the file name when it\'s selected', ->
+    file = @createFakeFile()
+    @elm.find("input")[0].files[0] = file
+    @elm.find("input:first").triggerHandler 'change'
+    expect(@elm.find("div[data-ng-show]").val(),"Choose a file")
+
 
 

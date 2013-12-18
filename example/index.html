@@ -7,12 +7,12 @@
     <script type="text/javascript" src="js/angular-fileuploader.js"></script>
     <script type="text/javascript">
       var app = angular.module('demo', ['ng-fileuploader']);
-      app.controller('indexCtrl', function ($scope) {
-        $scope.$on("fileChange", function( event, file ){
-          $scope.$apply(function(){
-            $scope.myFile = file
-          });
+      app.controller('indexCtrl', function ($scope, $timeout) {
+
+        $scope.$watch('myFile',function(newValue){
+          console.log( "file changed", newValue);
         });
+
       });
 
 
@@ -23,18 +23,13 @@
   <body>
     A very simple form
   <form ng-controller="indexCtrl">
+
     <div class="form-group">
-     <label>File</label>
-     <div class="form-group">
-       <div fileuploader="fileuploader" class="input-group">
-         <div data-ng-show="myFile" class="form-control">{{myFile.name}}</div>
-         <div data-ng-hide="myFile" class="form-control">Choose a file</div>
-         <div class="input-group-addon">
-           <div class="fa fa-lg fa-paperclip"></div>
-         </div>
-       </div>
-     </div>
+      <label>File</label>
+      <fileuploader data-ng-model="myFile" message="Choose a file" button-class="fa fa-lg fa-paperclip">
+
    </div>
+
   </form>
   </body>
 </html>
