@@ -1,20 +1,24 @@
 {
   "name": "angular-fileuploader",
-  "version": "0.2.1",
+  "version": "1.3.6",
   "description": "A simple fileuploader for angular",
-  "main": "angular-bootstrap3-datepicker.js",
+  "main": "dist/angular-fileuploader.js",
   "author": "Benjamin Dreux",
   "license": "Apache License, Version 2.0",
+  "repository": {
+    "type" : "git"
+    , "url" : "https://github.com/benzen/angular-fileuploader"
+  },
   "devDependencies": {
     "grunt-http-server": "0.0.4",
     "karma-html2js-preprocessor": "0.1.0",
     "karma-jasmine": "0.1.3",
     "karma-coffee-preprocessor": "0.1.0",
-    "karma": "0.10.2",
+    "karma": "0.12.28",
     "karma-ng-scenario": "0.1.0",
     "phantomjs": "1.9.1-0",
     "coffee-script": "1.6.3",
-    "bower": "~1.2.7",
+    "bower": "~1.3.12",
     "grunt": "0.4.1",
     "grunt-contrib-concat": "0.3.0",
     "grunt-cli": "0.1.9",
@@ -29,7 +33,6 @@
     "karma-firefox-launcher": "~0.1.0",
     "karma-chrome-launcher": "~0.1.0",
     "karma-html2js-preprocessor": "~0.1.0",
-    "karma-requirejs": "~0.1.0",
     "karma-jasmine": "~0.1.3",
     "karma-coffee-preprocessor": "~0.1.0",
     "karma-phantomjs-launcher": "~0.1.0",

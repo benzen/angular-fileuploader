@@ -41,4 +41,3 @@ How to clean /build / unit test /system test it
     grunt clean
     grunt build
     grunt test-unit
-    grunt test-system

@@ -14,10 +14,10 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-        'bower_components/jquery/jquery.min.js',
-        'bower_components/bootstrap/dist/js/bootstrap.js',
-        'bower_components/angular/angular.js',
-        'bower_components/angular-mocks/angular-mocks.js',
+        'lib/jquery/jquery.js',
+        'lib/bootstrap/bootstrap.js',
+        'lib/angular/angular.js',
+        'lib/angular-mocks/angular-mocks.js',
         'lib/jasmine-jquery/jasmine-jquery.js',
         'dist/angular-fileuploader.js',
         'test/unit/**/*.spec.coffee'

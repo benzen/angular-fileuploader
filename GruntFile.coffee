@@ -2,7 +2,15 @@ module.exports = (grunt) ->
   grunt.initConfig
     pkg: grunt.file.readJSON 'package.json'
 
-    clean: ['bower_components','js', 'dist', 'lib','example/css','example/font', 'example/js']
+    clean: [
+      'bower_components',
+      'js',
+      'dist',
+      'lib',
+      'example/css',
+      'example/font',
+      'example/js'
+    ]
 
     bower:
       install:
@@ -16,11 +24,6 @@ module.exports = (grunt) ->
         options:
           bare: true
           sourceMap: false
-
-    # concat:
-    #   js:
-    #     src: [ 'src/angular-fileuploader.js' ]
-    #     dest: 'dist/angular-fileuploader.js'
 
     uglify:
       options:
@@ -43,21 +46,10 @@ module.exports = (grunt) ->
       'watch-unit':
         configFile: 'build/karma.conf.js'
         autoWatch: true
-      'watch-e2e':
-        configFile: 'build/karma-e2e.conf.js'
-        autoWatch: true
       unit:
         configFile: 'build/karma.conf.js'
         singleRun: true
         browsers: ['PhantomJS']
-      e2e:
-        configFile: 'build/karma-e2e.conf.js'
-        singleRun: true
-        browsers: ['PhantomJS']
-      everything:
-        configFile: 'build/karma-e2e.conf.js'
-        singleRun: true
-        browsers: ['PhantomJS', 'Firefox', 'Chrome']
 
     # copy files to exemple directory
     copy:
@@ -74,20 +66,25 @@ module.exports = (grunt) ->
           'lib/bootstrap/*.css'
         ], dest: 'example/css' ]
       font:
-        files: [ flatten:true, expand:true, src: [ 'lib/font-awesome/fonts/*' ], dest: 'example/fonts/' ]
+        files: [
+          flatten:true,
+          expand:true
+          src: [ 'lib/font-awesome/fonts/*' ]
+          dest: 'example/fonts/'
+        ]
 
     'http-server':
-        dev:
-        #  the server root directory
-          root: "./"
-          port: 8000,
-          host: "localhost"
-          # cache: "<sec>"
-          showDir : true,
-          autoIndex: true,
-          defaultExt: "html",
-          #wait or not for the process to finish
-          runInBackground: true
+      dev:
+      #  the server root directory
+        root: "./"
+        port: 9090,
+        host: "localhost"
+        # cache: "<sec>"
+        showDir : true,
+        autoIndex: true,
+        defaultExt: "html",
+        #wait or not for the process to finish
+        runInBackground: false
 
   grunt.loadNpmTasks 'grunt-contrib-clean'
   grunt.loadNpmTasks 'grunt-contrib-concat'
@@ -100,8 +97,6 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-http-server'
 
   grunt.registerTask 'test-unit', ['karma:unit']
-  # grunt.registerTask 'test-system', ['http-server','karma:e2e']
+  grunt.registerTask 'build', ['bower', 'coffee', 'uglify', 'copy:*',]
 
-  # grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit', 'test-system' ]
-  grunt.registerTask 'default', [ 'clean', 'bower','coffee', 'uglify', 'copy:*','test-unit' ]
-
+  grunt.registerTask 'default', [ 'clean', 'build', 'test-unit' ]
