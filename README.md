@@ -34,7 +34,7 @@ How to use it
  </div>
 ```
 
-How to clean /build / unit test /system test it
+How to clean/build/test it
 ------------------------
 
     npm install
