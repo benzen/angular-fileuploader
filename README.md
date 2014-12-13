@@ -34,6 +34,9 @@ How to use it
  </div>
 ```
 
+You also need to _INCLUDE JQUERY_, because it's required to lookup element by class.
+You also need to include jquery _BEFORE ANGULAR_
+
 How to clean/build/test it
 ------------------------
 
